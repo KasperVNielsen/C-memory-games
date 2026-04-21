@@ -1,6 +1,19 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <stdio.h>
+#include <stdlib.h>
+
+
+long generateNumber(int digits)
+{
+    long min = 1;
+    for (int i = 1; i < digits; i++)
+        min *= 10;
+
+    long max = min * 10 - 1;
+
+    return min + rand() % (max - min + 1);
+}
 
 int main(void)
 {
