@@ -15,6 +15,9 @@ long generateNumber(int digits)
     return min + rand() % (max - min + 1);
 }
 
+game_update(dt);
+game_render();
+
 int main(void)
 {
     // Initialize GLFW
