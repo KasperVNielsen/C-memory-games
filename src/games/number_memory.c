@@ -1,0 +1,60 @@
+#include "number_memory.h"
+#include <stdlib.h>
+#include <stdio.h>
+#include <time.h>
+#include <GLFW/glfw3.h>
+
+typedef enum{
+    Show_number,
+    Input,
+    Result
+} GameState;
+
+static GameState state;
+static int level = 1;
+static long currentNumber = 0;
+static double showStartTime = 0.0;
+
+static char inputBuffer[32];
+static int inputIndex = 0;
+
+
+long generateNumber(int digits)
+{
+    long min = 1;
+    for (int i = 1; i < digits; i++)
+        min *= 10;
+
+    long max = min * 10 - 1;
+
+    return min + rand() % (max - min + 1);
+}
+
+//starter level
+void Number_memory_init(){
+    srand(time(NULL));
+
+    level = 1;
+    currentNumber = generateNumber(level);
+    showStartTime = glfwGetTime();
+    state = Show_number;
+
+}
+
+void update_memory_number(){
+    if(state == Show_number){
+        if(time - showStartTime > 2.0){
+            state == Input;
+        }
+    }
+}
+
+void Show_number(){
+
+}
+
+
+void main(){
+
+
+}
