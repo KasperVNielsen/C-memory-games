@@ -41,12 +41,25 @@ void Number_memory_init(){
 
 }
 
-void update_memory_number(){
+void update_memory_number(float time){
     if(state == Show_number){
         if(time - showStartTime > 2.0){
             state == Input;
         }
     }
+}
+
+void render_memory_number(){
+    if(state == Show_number){
+        printf("level | Memorize: %ld  ",level, currentNumber);
+    }
+    else if(state == Input){
+        printf("input number",inputBuffer);
+    }
+    else if(state == Result){
+        printf("\n");
+    }
+    
 }
 
 void Show_number(){

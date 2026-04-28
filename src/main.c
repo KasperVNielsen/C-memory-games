@@ -3,11 +3,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-
-
-
-game_update(dt);
-game_render();
+//game_update(dt);
+//game_render();
 
 int main(void)
 {
