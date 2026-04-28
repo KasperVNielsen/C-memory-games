@@ -62,10 +62,27 @@ void render_memory_number(){
     
 }
 
-void Show_number(){
+void input_memory_number(int key){
+    if(state != Input) return;
+
+    // 0 to 9
+
+    if(key >= GLFW_KEY_0 && GLFW_KEY_9){
+        if(inputIndex < 30){
+            inputBuffer[inputIndex++] = '0' + (key - GLFW_KEY_0);
+            inputBuffer[inputIndex] = '\0';
+        }
+    }
+
+    //backspace
+    if(key ==GLFW_KEY_BACKSPACE && inputIndex > 0){
+        inputIndex--;
+        inputBuffer[inputIndex] = '\0';
+    }
+
+    //enter
 
 }
-
 
 void main(){
 
