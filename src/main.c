@@ -4,8 +4,7 @@
 #include <stdlib.h>
 #include "games/number_memory.h"
 
-//game_update(dt);
-//game_render();
+
 
 int main(void)
 {
@@ -31,19 +30,19 @@ int main(void)
         printf("Failed to initialize GLAD\n");
         return -1;
     }
-
+    number_memory_init();
     // Main loop
     while (!glfwWindowShouldClose(window))
     {
-        // Set clear color to black
-        glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+    float time = glfwGetTime();
 
-        // Clear the screen
-        glClear(GL_COLOR_BUFFER_BIT);
+    glClear(GL_COLOR_BUFFER_BIT);
 
-        // Swap buffers and poll events
-        glfwSwapBuffers(window);
-        glfwPollEvents();
+    update_memory_number(time);
+    render_memory_number();
+
+    glfwSwapBuffers(window);
+    glfwPollEvents();
     }
 
     // Cleanup

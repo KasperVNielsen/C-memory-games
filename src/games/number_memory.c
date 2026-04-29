@@ -31,7 +31,7 @@ long generateNumber(int digits)
 }
 
 //starter level
-void Number_memory_init(){
+void number_memory_init(){
     srand(time(NULL));
 
     level = 1;
@@ -99,10 +99,5 @@ void input_memory_number(int key){
             
         }
     }
-
-}
-
-void main(){
-
 
 }
