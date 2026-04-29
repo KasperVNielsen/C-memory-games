@@ -2,6 +2,7 @@
 #include <GLFW/glfw3.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include "games/number_memory.h"
 
 //game_update(dt);
 //game_render();

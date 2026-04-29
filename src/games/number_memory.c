@@ -75,12 +75,30 @@ void input_memory_number(int key){
     }
 
     //backspace
-    if(key ==GLFW_KEY_BACKSPACE && inputIndex > 0){
+    if(key == GLFW_KEY_BACKSPACE && inputIndex > 0){
         inputIndex--;
         inputBuffer[inputIndex] = '\0';
     }
 
-    //enter
+    //enter go to next level if correct
+    if(key == GLFW_KEY_ENTER && inputIndex > 0){
+        long guess;
+        if(guess == currentNumber){
+            printf("\ncorrect\n");
+            level++;
+            inputIndex == 0;
+            inputBuffer[0] = '\0';
+
+            currentNumber = generateNumber(level);
+            showStartTime = glfwGetTime();
+            state = Show_number;
+        }
+        else{
+            printf("\nyou lost\n");
+            state = Result;
+            
+        }
+    }
 
 }
 
