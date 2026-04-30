@@ -30,6 +30,7 @@ long generateNumber(int digits)
     return min + rand() % (max - min + 1);
 }
 
+
 //starter level
 void number_memory_init(){
     srand(time(NULL));
@@ -51,10 +52,13 @@ void update_memory_number(float time){
 
 void render_memory_number(){
     if(state == Show_number){
-        printf("level | Memorize: %ld  ",level, currentNumber);
+        printf("\rLevel %d | Memorize: %ld   ", level, currentNumber);
+        fflush(stdout);
     }
     else if(state == Input){
-        printf("input number",inputBuffer);
+        printf("\rEnter number: %s   ", inputBuffer);
+        fflush(stdout);
+
     }
     else if(state == Result){
         printf("\n");

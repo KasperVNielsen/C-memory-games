@@ -37,7 +37,7 @@ int main(void)
     float time = glfwGetTime();
 
     glClear(GL_COLOR_BUFFER_BIT);
-
+    number_memory_init();
     update_memory_number(time);
     render_memory_number();
 
