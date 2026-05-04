@@ -32,7 +32,7 @@ long generateNumber(int digits)
 
 
 //starter level
-void number_memory_init(){
+void init_number_memory(){
     srand(time(NULL));
 
     level = 1;
@@ -58,20 +58,18 @@ void render_memory_number(){
     else if(state == Input){
         printf("\rEnter number: %s   ", inputBuffer);
         fflush(stdout);
-
     }
     else if(state == Result){
         printf("\n");
     }
-    
 }
 
 void input_memory_number(int key){
     if(state != Input) return;
 
     // 0 to 9
-
     if(key >= GLFW_KEY_0 && GLFW_KEY_9){
+        
         if(inputIndex < 30){
             inputBuffer[inputIndex++] = '0' + (key - GLFW_KEY_0);
             inputBuffer[inputIndex] = '\0';

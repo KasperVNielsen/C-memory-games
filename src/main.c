@@ -30,14 +30,14 @@ int main(void)
         printf("Failed to initialize GLAD\n");
         return -1;
     }
-    number_memory_init();
+    init_number_memory();
+
     // Main loop
     while (!glfwWindowShouldClose(window))
     {
     float time = glfwGetTime();
 
     glClear(GL_COLOR_BUFFER_BIT);
-    number_memory_init();
     update_memory_number(time);
     render_memory_number();
 
