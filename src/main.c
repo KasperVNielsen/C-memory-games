@@ -4,7 +4,11 @@
 #include <stdlib.h>
 #include "games/number_memory.h"
 
-
+void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods) {
+    if(action == GLFW_PRESS || action == GLFW_REPEAT) {
+        input_memory_number(key);  // Pass the GLFW key code
+    }
+}
 
 int main(void)
 {
@@ -21,7 +25,7 @@ int main(void)
         glfwTerminate();
         return -1;
     }
-
+    
     // Make the window's context current
     glfwMakeContextCurrent(window);
 
@@ -30,7 +34,9 @@ int main(void)
         printf("Failed to initialize GLAD\n");
         return -1;
     }
-    init_number_memory();
+        // IMPORTANT: Register the key callback function
+    glfwSetKeyCallback(window, key_callback);
+
 
     // Main loop
     while (!glfwWindowShouldClose(window))
@@ -38,6 +44,7 @@ int main(void)
     float time = glfwGetTime();
 
     glClear(GL_COLOR_BUFFER_BIT);
+    init_number_memory();
     update_memory_number(time);
     render_memory_number();
 

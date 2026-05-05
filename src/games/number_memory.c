@@ -45,12 +45,22 @@ void init_number_memory(){
 void update_memory_number(float time){
     if(state == Show_number){
         if(time - showStartTime > 2.0){
-            state == Input;
+            state = Input;
         }
     }
 }
 
 void render_memory_number(){
+     //debug
+     //if(state == Show_number){
+       // static long lastPrintedNumber = 0;
+       // if(currentNumber != lastPrintedNumber) {
+        //    printf("\n[DEBUG] Number changed from %ld to %ld!\n", lastPrintedNumber, currentNumber);
+        //    lastPrintedNumber = currentNumber;
+        //}
+        //printf("\rLevel %d | Memorize: %ld   ", level, currentNumber);
+      //  fflush(stdout);
+    //}
     if(state == Show_number){
         printf("\rLevel %d | Memorize: %ld   ", level, currentNumber);
         fflush(stdout);
@@ -63,12 +73,12 @@ void render_memory_number(){
         printf("\n");
     }
 }
-
+ 
 void input_memory_number(int key){
     if(state != Input) return;
 
     // 0 to 9
-    if(key >= GLFW_KEY_0 && GLFW_KEY_9){
+    if(key >= GLFW_KEY_0 && key <= GLFW_KEY_9){
         
         if(inputIndex < 30){
             inputBuffer[inputIndex++] = '0' + (key - GLFW_KEY_0);
@@ -87,8 +97,9 @@ void input_memory_number(int key){
         long guess;
         if(guess == currentNumber){
             printf("\ncorrect\n");
+
             level++;
-            inputIndex == 0;
+            inputIndex = 0;
             inputBuffer[0] = '\0';
 
             currentNumber = generateNumber(level);
