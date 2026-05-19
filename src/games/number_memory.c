@@ -3,6 +3,8 @@
 #include <stdio.h>
 #include <time.h>
 #include <GLFW/glfw3.h>
+#include <stdbool.h>
+
 
 typedef enum{
     Show_number,
@@ -17,19 +19,18 @@ static double showStartTime = 0.0;
 
 static char inputBuffer[32];
 static int inputIndex = 0;
+bool debugMode = false;
 
-
-long generateNumber(int digits)
-{
+long generateNumber(int digits){
     long min = 1;
-    for (int i = 1; i < digits; i++)
+    for (int i = 1; i < digits; i++){
         min *= 10;
 
     long max = min * 10 - 1;
 
     return min + rand() % (max - min + 1);
+    }
 }
-
 
 //starter level
 void init_number_memory(){
@@ -37,8 +38,8 @@ void init_number_memory(){
 
     level = 1;
     currentNumber = generateNumber(level);
-    showStartTime = glfwGetTime();
     state = Show_number;
+    showStartTime = glfwGetTime();
 
 }
 
@@ -52,26 +53,32 @@ void update_memory_number(float time){
 
 void render_memory_number(){
      //debug
-     //if(state == Show_number){
-       // static long lastPrintedNumber = 0;
-       // if(currentNumber != lastPrintedNumber) {
-        //    printf("\n[DEBUG] Number changed from %ld to %ld!\n", lastPrintedNumber, currentNumber);
-        //    lastPrintedNumber = currentNumber;
-        //}
-        //printf("\rLevel %d | Memorize: %ld   ", level, currentNumber);
-      //  fflush(stdout);
-    //}
-    if(state == Show_number){
-        printf("\rLevel %d | Memorize: %ld   ", level, currentNumber);
-        fflush(stdout);
-    }
-    else if(state == Input){
-        printf("\rEnter number: %s   ", inputBuffer);
-        fflush(stdout);
-    }
-    else if(state == Result){
-        printf("\n");
-    }
+     if(debugMode == true){
+        if(state == Show_number){
+            static long lastPrintedNumber = 0;
+            if(currentNumber != lastPrintedNumber) {
+                printf("\n[DEBUG] Number changed from %ld to %ld!\n", lastPrintedNumber, currentNumber);
+                lastPrintedNumber = currentNumber;
+            }
+            printf("\rLevel %d | Memorize: %ld   ", level, currentNumber);
+            fflush(stdout);
+        }
+     }
+     else{
+        if(state == Show_number){
+            printf("\rLevel %d | Memorize: %ld   ", level, currentNumber);
+            fflush(stdout);
+        }
+        else if(state == Input){
+            printf("\rEnter number: %s   ", inputBuffer);
+            fflush(stdout);
+        }
+        else if(state == Result){
+            printf("\n");
+        }
+     }
+     
+    
 }
  
 void input_memory_number(int key){

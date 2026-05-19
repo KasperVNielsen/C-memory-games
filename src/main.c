@@ -41,15 +41,16 @@ int main(void)
     // Main loop
     while (!glfwWindowShouldClose(window))
     {
-    float time = glfwGetTime();
+        float time = glfwGetTime();
 
-    glClear(GL_COLOR_BUFFER_BIT);
-    init_number_memory();
-    update_memory_number(time);
-    render_memory_number();
+        glClear(GL_COLOR_BUFFER_BIT);
+        init_number_memory();
+        update_memory_number(time);
+        render_memory_number();
+        init_number_memory();
 
-    glfwSwapBuffers(window);
-    glfwPollEvents();
+        glfwSwapBuffers(window);
+        glfwPollEvents();
     }
 
     // Cleanup
